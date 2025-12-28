@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. IMPROVED SCROLL REVEAL
-    // Uses Intersection Observer for better performance than 'window.scroll'
+    // ============================================
+    // 1. SCROLL REVEAL ANIMATION
+    // ============================================
     const observerOptions = {
         threshold: 0.1
     };
@@ -18,21 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 2. DYNAMIC NAVBAR
+    // ============================================
+    // 2. DYNAMIC NAVBAR ON SCROLL
+    // ============================================
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
+        const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+        
         if (window.scrollY > 50) {
             navbar.style.height = '70px';
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+            navbar.style.background = isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = isDarkMode ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(0,0,0,0.05)';
         } else {
             navbar.style.height = '80px';
-            navbar.style.background = 'rgba(255, 255, 255, 0.85)';
+            navbar.style.background = isDarkMode ? 'rgba(15, 23, 42, 0.85)' : 'rgba(255, 255, 255, 0.85)';
             navbar.style.boxShadow = 'none';
         }
     });
 
-    // 3. SMOOTH SCROLL OFFSET
+    // ============================================
+    // 3. SMOOTH SCROLL WITH OFFSET
+    // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -51,4 +58,273 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ============================================
+    // 4. DARK MODE TOGGLE (LOCAL STORAGE)
+    // ============================================
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    
+    // Load saved theme from local storage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+        
+        // Update navbar background immediately based on scroll position
+        const isDarkMode = newTheme === 'dark';
+        if (window.scrollY > 50) {
+            navbar.style.background = isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = isDarkMode ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(0,0,0,0.05)';
+        } else {
+            navbar.style.background = isDarkMode ? 'rgba(15, 23, 42, 0.85)' : 'rgba(255, 255, 255, 0.85)';
+        }
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
+    // ============================================
+    // 5. FORM VALIDATION WITH ERROR MESSAGES
+    // ============================================
+    const contactForm = document.getElementById('contactForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+
+    // Real-time validation
+    nameInput.addEventListener('blur', () => validateName());
+    emailInput.addEventListener('blur', () => validateEmail());
+    messageInput.addEventListener('blur', () => validateMessage());
+
+    // Form submission
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+        const isMessageValid = validateMessage();
+
+        if (isNameValid && isEmailValid && isMessageValid) {
+            handleFormSubmit();
+        }
+    });
+
+    function validateName() {
+        const name = nameInput.value.trim();
+        const errorElement = document.getElementById('nameError');
+        
+        if (name.length === 0) {
+            showError(nameInput, errorElement, 'Name is required');
+            return false;
+        } else if (name.length < 2) {
+            showError(nameInput, errorElement, 'Name must be at least 2 characters');
+            return false;
+        } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+            showError(nameInput, errorElement, 'Name can only contain letters');
+            return false;
+        } else {
+            clearError(nameInput, errorElement);
+            return true;
+        }
+    }
+
+    function validateEmail() {
+        const email = emailInput.value.trim();
+        const errorElement = document.getElementById('emailError');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (email.length === 0) {
+            showError(emailInput, errorElement, 'Email is required');
+            return false;
+        } else if (!emailRegex.test(email)) {
+            showError(emailInput, errorElement, 'Please enter a valid email address');
+            return false;
+        } else {
+            clearError(emailInput, errorElement);
+            return true;
+        }
+    }
+
+    function validateMessage() {
+        const message = messageInput.value.trim();
+        const errorElement = document.getElementById('messageError');
+        
+        if (message.length === 0) {
+            showError(messageInput, errorElement, 'Message is required');
+            return false;
+        } else if (message.length < 10) {
+            showError(messageInput, errorElement, 'Message must be at least 10 characters');
+            return false;
+        } else {
+            clearError(messageInput, errorElement);
+            return true;
+        }
+    }
+
+    function showError(input, errorElement, message) {
+        input.style.borderColor = '#ef4444';
+        errorElement.textContent = message;
+        errorElement.style.color = '#ef4444';
+    }
+
+    function clearError(input, errorElement) {
+        input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        errorElement.textContent = '';
+    }
+
+    function handleFormSubmit() {
+        // Save form data to local storage
+        const formData = {
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            message: messageInput.value.trim(),
+            timestamp: new Date().toISOString()
+        };
+
+        // Get existing submissions
+        let submissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+        submissions.push(formData);
+        localStorage.setItem('formSubmissions', JSON.stringify(submissions));
+
+        // Show success message
+        const successMessage = document.getElementById('formSuccess');
+        successMessage.textContent = 'Thank you! Your message has been sent successfully.';
+        successMessage.classList.add('show');
+
+        // Reset form
+        contactForm.reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 5000);
+    }
+
+    // ============================================
+    // 6. SCROLL TO TOP BUTTON
+    // ============================================
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // ============================================
+    // 7. PROJECT CARDS HOVER EFFECT
+    // ============================================
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    projectItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // ============================================
+    // 8. SKILL CARDS ANIMATION ON HOVER
+    // ============================================
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    skillCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) rotate(2deg)';
+            this.style.boxShadow = '0 15px 40px rgba(99, 102, 241, 0.25)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotate(0deg)';
+            this.style.boxShadow = 'none';
+        });
+    });
+
+    // ============================================
+    // 9. LOG VISITOR COUNT (LOCAL STORAGE)
+    // ============================================
+    let visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
+    visitorCount++;
+    localStorage.setItem('visitorCount', visitorCount);
+    console.log(`Welcome! You are visitor #${visitorCount} to this portfolio.`);
+
+    // ============================================
+    // 10. WELCOME BACK MESSAGE (RETURNING USERS)
+    // ============================================
+    const lastVisit = localStorage.getItem('lastVisit');
+    const now = new Date();
+    
+    if (lastVisit) {
+        const lastVisitDate = new Date(lastVisit);
+        const daysSinceLastVisit = Math.floor((now - lastVisitDate) / (1000 * 60 * 60 * 24));
+        
+        if (daysSinceLastVisit > 0) {
+            console.log(`Welcome back! It's been ${daysSinceLastVisit} day(s) since your last visit.`);
+        }
+    } else {
+        console.log('Welcome to my portfolio for the first time!');
+    }
+    
+    localStorage.setItem('lastVisit', now.toISOString());
 });
+
+// ============================================
+// REUSABLE UTILITY FUNCTIONS
+// ============================================
+
+// Debounce function for performance optimization
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Smooth scroll to element (reusable)
+function scrollToElement(elementId, offset = 80) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Format date for display (reusable)
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+}
