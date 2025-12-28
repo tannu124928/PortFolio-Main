@@ -19,6 +19,9 @@
                 <li><a href="#projects">Work</a></li>
                 <li><a href="#contact" class="nav-cta">Connect</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
         </div>
     </nav>
 
@@ -35,11 +38,10 @@
                     </div>
                 </div>
                 <div class="hero-visual reveal">
-    <div class="blob-shape">
-        <img src="images/image.png" alt="Profile Image">
-    </div>
-</div>
-
+                    <div class="blob-shape">
+                        <img src="images/image.png" alt="Profile Image">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -50,9 +52,9 @@
                     <div class="timeline-item reveal">
                         <div class="time-dot"></div>
                         <div class="time-content">
-                            <h3>Bachelor’s Degree in Computer Science</h3>
+                            <h3>Bachelor's Degree in Computer Science</h3>
                             <span class="institute">Lovely Professional University</span>
-                            <span class="date">2023 — 2026</span>
+                            <span class="date">2023 – 2026</span>
                             <p>Specializing in Computer Science with a strong focus on Data Structures, Web Technologies, and Software Engineering.</p>
                         </div>
                     </div>
@@ -79,7 +81,7 @@
                     </div>
                     <div class="skill-card reveal">
                         <div class="skill-icon">Frontend/Backend</div>
-                        <p>HTML5, CSS3, Responsive Design, React, Angular, Node.js </p>
+                        <p>HTML5, CSS3, Responsive Design, React, Angular, Node.js</p>
                     </div>
                     <div class="skill-card reveal">
                         <div class="skill-icon">Other Tools</div>
@@ -90,24 +92,25 @@
         </section>
 
         <section id="projects" class="section bg-light">
-            <a href="https://github.com/tannu124928/Technician_Finder">
             <div class="container">
                 <h2 class="section-title reveal">Selected Projects</h2>
                 <div class="project-grid">
-                    <div class="project-item reveal">
-                        <div class="project-box">01</div>
-                        <h3>Technician_Finder</h3>
-                        <p>A modern web app to search and connect with verified technicians. Built with Next.js, TypeScript, and TailwindCSS for speed, scalability, and a clean UI.</p>
-                    </div></a>
-                    <a href="https://github.com/tannu124928/PortFolio">
-                    <div class="project-item reveal">
-                        <div class="project-box">02</div>
-                        <h3>PortFolio Website</h3>
-                        <p>Built a responsive personal portfolio using HTML, CSS, and JavaScript to showcase projects, skills, and achievements with a clean and modern design.</p>
-                    </div>
+                    <a href="https://github.com/tannu124928/Technician_Finder" target="_blank" class="project-link">
+                        <div class="project-item reveal">
+                            <div class="project-box">01</div>
+                            <h3>Technician_Finder</h3>
+                            <p>A modern web app to search and connect with verified technicians. Built with Next.js, TypeScript, and TailwindCSS for speed, scalability, and a clean UI.</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/tannu124928/PortFolio" target="_blank" class="project-link">
+                        <div class="project-item reveal">
+                            <div class="project-box">02</div>
+                            <h3>PortFolio Website</h3>
+                            <p>Built a responsive personal portfolio using HTML, CSS, and JavaScript to showcase projects, skills, and achievements with a clean and modern design.</p>
+                        </div>
+                    </a>
                 </div>
-            </div></a>
-            
+            </div>
         </section>
 
         <section id="contact" class="section contact-section">
@@ -116,6 +119,26 @@
                     <h2>Let's Build Something Together</h2>
                     <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
                     
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-submit">Send Message</button>
+                        <div id="formSuccess" class="success-message"></div>
+                    </form>
+
                     <div class="social-grid">
                         <a href="https://www.linkedin.com/in/tanisha-singh-563169296/" target="_blank" class="social-link linkedin">LinkedIn</a>
                         <a href="https://github.com/tannu124928/PortFolio" target="_blank" class="social-link github">GitHub</a>
@@ -130,6 +153,8 @@
     <footer>
         <p>&copy; 2025 Tanisha Singh. All rights reserved.</p>
     </footer>
+
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
     <script src="script.js"></script>
 </body>
