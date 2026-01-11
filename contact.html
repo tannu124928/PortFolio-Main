@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Tanisha Singh</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">TANISHA<span>.</span></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Connect</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle"><span class="theme-icon">🌙</span></button>
+        </div>
+    </nav>
+
+    <main style="margin-top: 100px;">
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="contact-card reveal">
+                    <h2>Let's Build Something Together</h2>
+                    <p>I'm always open to discussing new projects or creative ideas.</p>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Send Message</button>
+                        <div id="formSuccess" class="success-message"></div>
+                    </form>
+
+                    <div class="social-grid">
+                        <a href="https://www.linkedin.com/in/tanisha-singh-563169296/" target="_blank" class="social-link linkedin">LinkedIn</a>
+                        <a href="https://github.com/tannu124928" target="_blank" class="social-link github">GitHub</a>
+                        <a href="mailto:tanishasingh270606@gmail.com" class="social-link email">Email Me</a>
+                        <a href="https://x.com/shtanisha27" target="_blank" class="social-link twitter">Twitter / X</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2025 Tanisha Singh. All rights reserved.</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
