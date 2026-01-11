@@ -8,16 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">TANISHA<span>.</span></div>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#contact" class="nav-cta">Connect</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Connect</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
@@ -34,58 +32,12 @@
                     <p>Building the future through code, design, and continuous learning. Currently focused on creating impactful web experiences.</p>
                     <div class="btn-group">
                         <a href="#projects" class="btn btn-primary">My Projects</a>
-                        <a href="#contact" class="btn btn-outline">Reach Out</a>
+                        <a href="contact.html" class="btn btn-outline">Reach Out</a>
                     </div>
                 </div>
                 <div class="hero-visual reveal">
                     <div class="blob-shape">
                         <img src="images/image.png" alt="Profile Image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title reveal">Education</h2>
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="time-dot"></div>
-                        <div class="time-content">
-                            <h3>Bachelor's Degree in Computer Science</h3>
-                            <span class="institute">Lovely Professional University</span>
-                            <span class="date">2023 – 2026</span>
-                            <p>Specializing in Computer Science with a strong focus on Data Structures, Web Technologies, and Software Engineering.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="time-dot"></div>
-                        <div class="time-content">
-                            <h3>Presidency The International School</h3>
-                            <span class="institute">Bhiwadi, Rajasthan</span>
-                            <span class="date">Completed 2023</span>
-                            <p>Focused on Science and Mathematics (PCM).</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="section">
-            <div class="container">
-                <h2 class="section-title reveal">Technical Toolbox</h2>
-                <div class="skills-container">
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">Languages</div>
-                        <p>Java, C++, JavaScript (ES6), Python</p>
-                    </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">Frontend/Backend</div>
-                        <p>HTML5, CSS3, Responsive Design, React, Angular, Node.js</p>
-                    </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">Other Tools</div>
-                        <p>Git, GitHub, VS Code, Figma</p>
                     </div>
                 </div>
             </div>
@@ -99,63 +51,23 @@
                         <div class="project-item reveal">
                             <div class="project-box">01</div>
                             <h3>Technician_Finder</h3>
-                            <p>A modern web app to search and connect with verified technicians. Built with Next.js, TypeScript, and TailwindCSS for speed, scalability, and a clean UI.</p>
+                            <p>A modern web app built with Next.js, TypeScript, and TailwindCSS.</p>
                         </div>
                     </a>
                     <a href="https://github.com/tannu124928/PortFolio" target="_blank" class="project-link">
                         <div class="project-item reveal">
                             <div class="project-box">02</div>
                             <h3>PortFolio Website</h3>
-                            <p>Built a responsive personal portfolio using HTML, CSS, and JavaScript to showcase projects, skills, and achievements with a clean and modern design.</p>
+                            <p>Responsive personal portfolio using vanilla HTML, CSS, and JS.</p>
                         </div>
                     </a>
                 </div>
             </div>
         </section>
-
-        <section id="contact" class="section contact-section">
-            <div class="container">
-                <div class="contact-card reveal">
-                    <h2>Let's Build Something Together</h2>
-                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-                    
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                            <span class="error-message" id="nameError"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                            <span class="error-message" id="emailError"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
-                            <span class="error-message" id="messageError"></span>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-submit">Send Message</button>
-                        <div id="formSuccess" class="success-message"></div>
-                    </form>
-
-                    <div class="social-grid">
-                        <a href="https://www.linkedin.com/in/tanisha-singh-563169296/" target="_blank" class="social-link linkedin">LinkedIn</a>
-                        <a href="https://github.com/tannu124928/PortFolio" target="_blank" class="social-link github">GitHub</a>
-                        <a href="mailto:tanishasingh270606@gmail.com" class="social-link email">Email Me</a>
-                        <a href="https://x.com/shtanisha27" target="_blank" class="social-link twitter">Twitter / X</a>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Tanisha Singh. All rights reserved.</p>
-    </footer>
-
-    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-
+    <footer><p>&copy; 2025 Tanisha Singh. All rights reserved.</p></footer>
+    <button id="scrollToTop" class="scroll-to-top">↑</button>
     <script src="script.js"></script>
 </body>
 </html>
